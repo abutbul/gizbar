@@ -1,0 +1,5 @@
+{
+  "name": "Gathering Treasurer",
+  "description": "An application to help a treasurer manage expenses for friends' gatherings. All data is stored locally in your browser, with options to import and export.",
+  "requestFramePermissions": []
+}
