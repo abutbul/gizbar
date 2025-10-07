@@ -66,6 +66,9 @@ async function build() {
         // Remove the Babel Standalone script as it's not needed for the pre-transpiled code
         htmlContent = htmlContent.replace('<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>', '<!-- Babel Standalone removed for production build -->');
 
+        // Add the CSS link
+        htmlContent = htmlContent.replace('<title>Gathering Treasurer</title>', '<title>Gathering Treasurer</title>\n  <link rel="stylesheet" href="./index.css">');
+
         // Update the script tag to point to the compiled JavaScript file
         htmlContent = htmlContent.replace(
             '<script type="text/babel" data-type="module" src="./index.tsx"></script>',
@@ -75,7 +78,10 @@ async function build() {
         // Write the processed HTML to the dist directory
         await fs.writeFile(`${distDir}/index.html`, htmlContent, 'utf8');
 
-        console.log('Build finished successfully!');
+        // 7. Build Tailwind CSS
+        console.log('Building Tailwind CSS...');
+        const tailwindCommand = `npx @tailwindcss/cli -i index.css -o ${distDir}/index.css`;
+        execSync(tailwindCommand, { stdio: 'inherit' });
 
     } catch (error) {
         console.error('Build failed:', error);
