@@ -87,5 +87,15 @@
   "importAndOverwrite": "Import and Overwrite",
   "confirm": "Confirm",
   "cancel": "Cancel",
-  "errorMemberExists": "A member named '{name}' already exists."
+  "errorMemberExists": "A member named '{name}' already exists.",
+  "reports": "Reports",
+  "reportsTitle": "Generate Reports",
+  "dateRange": "Date Range",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "generateReport": "Generate CSV Report",
+  "downloadReport": "Download CSV",
+  "errorInvalidDateRange": "End date must be after start date.",
+  "reportGenerated": "Report generated successfully!",
+  "noDataInRange": "No data found in the selected date range."
 }

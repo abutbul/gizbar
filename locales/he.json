@@ -87,5 +87,15 @@
   "importAndOverwrite": "ייבא והחלף",
   "confirm": "אישור",
   "cancel": "ביטול",
-  "errorMemberExists": "חבר בשם '{name}' כבר קיים."
+  "errorMemberExists": "חבר בשם '{name}' כבר קיים.",
+  "reports": "דוחות",
+  "reportsTitle": "יצירת דוחות",
+  "dateRange": "טווח תאריכים",
+  "startDate": "תאריך התחלה",
+  "endDate": "תאריך סיום",
+  "generateReport": "צור דוח CSV",
+  "downloadReport": "הורד CSV",
+  "errorInvalidDateRange": "תאריך הסיום חייב להיות אחרי תאריך ההתחלה.",
+  "reportGenerated": "הדוח נוצר בהצלחה!",
+  "noDataInRange": "לא נמצאו נתונים בטווח התאריכים שנבחר."
 }

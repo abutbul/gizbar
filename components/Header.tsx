@@ -4,16 +4,17 @@ import { Button } from './Button.tsx';
 import { useTranslation, languages, Language } from '../i18n/index.ts';
 import { ChevronDownIcon } from './icons/ChevronDownIcon.tsx';
 
-type View = 'gatherings' | 'members';
+type View = 'gatherings' | 'members' | 'reports';
 
 interface HeaderProps {
     onImportClick: () => void;
     onExportClick: () => void;
+    onReportsClick: () => void;
     currentView: View;
     onNavigate: (view: View) => void;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, currentView, onNavigate }) => {
+export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, onReportsClick, currentView, onNavigate }) => {
     const { t, language, setLanguage } = useTranslation();
     const [isLangMenuOpen, setLangMenuOpen] = useState(false);
     const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -74,9 +75,11 @@ export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, cu
                          <div className="bg-slate-200 dark:bg-slate-800 p-1 rounded-lg flex gap-1">
                             <button onClick={() => onNavigate('gatherings')} className={navButtonClasses('gatherings')}>{t('gatherings')}</button>
                             <button onClick={() => onNavigate('members')} className={navButtonClasses('members')}>{t('members')}</button>
+                            <button onClick={() => onNavigate('reports')} className={navButtonClasses('reports')}>{t('reports')}</button>
                          </div>
                     </div>
                     <div className="hidden sm:flex items-center gap-2">
+                        <Button onClick={onReportsClick} variant="secondary">{t('reports')}</Button>
                         <Button onClick={onImportClick} variant="secondary">{t('import')}</Button>
                         <Button onClick={onExportClick} variant="secondary">{t('export')}</Button>
                     </div>
@@ -91,6 +94,12 @@ export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, cu
                         </button>
                         {isMobileMenuOpen && (
                             <div className="absolute top-full mt-2 ltr:right-0 rtl:left-0 w-36 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 py-1 z-50">
+                                <button 
+                                    onClick={() => { onReportsClick(); setMobileMenuOpen(false); }}
+                                    className="w-full text-start px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
+                                >
+                                    {t('reports')}
+                                </button>
                                 <button 
                                     onClick={() => { onImportClick(); setMobileMenuOpen(false); }}
                                     className="w-full text-start px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
@@ -112,6 +121,7 @@ export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, cu
                     <div className="bg-slate-200 dark:bg-slate-800 p-1 rounded-lg flex gap-1">
                         <button onClick={() => onNavigate('gatherings')} className={navButtonClasses('gatherings')}>{t('gatherings')}</button>
                         <button onClick={() => onNavigate('members')} className={navButtonClasses('members')}>{t('members')}</button>
+                        <button onClick={() => onNavigate('reports')} className={navButtonClasses('reports')}>{t('reports')}</button>
                     </div>
                 </div>
             </div>

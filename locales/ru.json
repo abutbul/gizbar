@@ -87,5 +87,15 @@
   "importAndOverwrite": "Импорт с перезаписью",
   "confirm": "Подтвердить",
   "cancel": "Отмена",
-  "errorMemberExists": "Участник с именем '{name}' уже существует."
+  "errorMemberExists": "Участник с именем '{name}' уже существует.",
+  "reports": "Отчеты",
+  "reportsTitle": "Создание отчетов",
+  "dateRange": "Диапазон дат",
+  "startDate": "Дата начала",
+  "endDate": "Дата окончания",
+  "generateReport": "Создать CSV отчет",
+  "downloadReport": "Скачать CSV",
+  "errorInvalidDateRange": "Дата окончания должна быть после даты начала.",
+  "reportGenerated": "Отчет успешно создан!",
+  "noDataInRange": "Нет данных в выбранном диапазоне дат."
 }

@@ -5,6 +5,7 @@ import * as db from './services/database.ts';
 import { GatheringList } from './components/GatheringList.tsx';
 import { GatheringDetail } from './components/GatheringDetail.tsx';
 import { MemberList } from './components/MemberList.tsx';
+import { Reports } from './components/Reports.tsx';
 import { Header } from './components/Header.tsx';
 import { Modal } from './components/Modal.tsx';
 import { Button } from './components/Button.tsx';
@@ -13,7 +14,7 @@ import { useTranslation } from './i18n/index.ts';
 export default function App() {
     const { t } = useTranslation();
     const [gatherings, setGatherings] = useState<Gathering[]>([]);
-    const [mainView, setMainView] = useState<'gatherings' | 'members'>('gatherings');
+    const [mainView, setMainView] = useState<'gatherings' | 'members' | 'reports'>('gatherings');
     const [selectedGatheringId, setSelectedGatheringId] = useState<string | null>(null);
     
     const [isImportModalOpen, setImportModalOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function App() {
         refreshGatherings();
     };
     
-    const handleNavigate = (view: 'gatherings' | 'members') => {
+    const handleNavigate = (view: 'gatherings' | 'members' | 'reports') => {
         setSelectedGatheringId(null); // Always reset detail view on main navigation
         setMainView(view);
     };
@@ -60,6 +61,10 @@ export default function App() {
         setImportData('');
         setError('');
         setImportModalOpen(true);
+    };
+
+    const handleReportsClick = () => {
+        setMainView('reports');
     };
 
     const handleImport = () => {
@@ -93,6 +98,10 @@ export default function App() {
             return <MemberList />;
         }
         
+        if (mainView === 'reports') {
+            return <Reports />;
+        }
+        
         // mainView is 'gatherings'
         if (selectedGatheringId) {
             return <GatheringDetail
@@ -114,6 +123,7 @@ export default function App() {
             <Header 
                 onImportClick={handleImportClick} 
                 onExportClick={handleExportClick} 
+                onReportsClick={handleReportsClick}
                 currentView={mainView}
                 onNavigate={handleNavigate}
             />
