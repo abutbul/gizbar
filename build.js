@@ -13,19 +13,53 @@ async function build() {
         console.log(`Cleaning and creating '${distDir}' directory...`);
         await fs.emptyDir(distDir);
         
-        // 2. Transpile the main TSX file to JavaScript
-        console.log('Transpiling index.tsx to index.js...');
-        const babelCommand = `npx babel index.tsx --out-file ${distDir}/index.js --presets=@babel/preset-env,@babel/preset-react,@babel/preset-typescript`;
+        // 2. Transpile all TypeScript/TSX files to JavaScript
+        console.log('Transpiling TypeScript/TSX files to JavaScript...');
+        const babelCommand = `npx babel . --out-dir ${distDir} --extensions .ts,.tsx --presets=@babel/preset-react,@babel/preset-typescript --ignore "node_modules/**,dist/**" --keep-file-extension`;
         execSync(babelCommand, { stdio: 'inherit' });
 
-        // 3. Copy static assets (locales folder and metadata)
+        // 3. Rename .tsx files to .js in dist
+        console.log('Renaming .tsx files to .js...');
+        const renameFiles = async (dir) => {
+            const entries = await fs.readdir(dir, { withFileTypes: true });
+            for (const entry of entries) {
+                const fullPath = `${dir}/${entry.name}`;
+                if (entry.isDirectory()) {
+                    await renameFiles(fullPath);
+                } else if (entry.name.endsWith('.tsx') || entry.name.endsWith('.ts')) {
+                    const newPath = fullPath.replace(/\.tsx?$/, '.js');
+                    await fs.rename(fullPath, newPath);
+                }
+            }
+        };
+        await renameFiles(distDir);
+
+        // 4. Fix import paths in JS files (remove .tsx/.ts extensions, add .js)
+        console.log('Fixing import paths...');
+        const fixImports = async (dir) => {
+            const entries = await fs.readdir(dir, { withFileTypes: true });
+            for (const entry of entries) {
+                const fullPath = `${dir}/${entry.name}`;
+                if (entry.isDirectory()) {
+                    await fixImports(fullPath);
+                } else if (entry.name.endsWith('.js')) {
+                    let content = await fs.readFile(fullPath, 'utf8');
+                    // Replace .tsx and .ts imports with .js
+                    content = content.replace(/from\s+['"](.+?)\.tsx?['"]/g, "from '$1.js'");
+                    await fs.writeFile(fullPath, content, 'utf8');
+                }
+            }
+        };
+        await fixImports(distDir);
+
+        // 5. Copy static assets (locales folder and metadata)
         console.log(`Copying '${localesDir}' directory...`);
         await fs.copy(localesDir, `${distDir}/${localesDir}`);
         
         console.log('Copying metadata.json...');
         await fs.copy('metadata.json', `${distDir}/metadata.json`);
         
-        // 4. Process and copy index.html for production
+        // 6. Process and copy index.html for production
         console.log('Processing index.html for production...');
         let htmlContent = await fs.readFile('index.html', 'utf8');
 
