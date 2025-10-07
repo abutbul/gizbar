@@ -1,14 +1,15 @@
+
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
-import { Gathering, MemberBalance, GatheringStatus, GlobalMember } from '../types';
-import * as db from '../services/database';
-import { Button } from './Button';
-import { Modal } from './Modal';
-import { Input } from './Input';
-import { ConfirmationModal } from './ConfirmationModal';
-import { ArrowLeftIcon } from './icons/ArrowLeftIcon';
-import { PlusIcon } from './icons/PlusIcon';
-import { TrashIcon } from './icons/TrashIcon';
-import { useTranslation } from '../i18n';
+import { Gathering, MemberBalance, GatheringStatus, GlobalMember } from '../types.ts';
+import * as db from '../services/database.ts';
+import { Button } from './Button.tsx';
+import { Modal } from './Modal.tsx';
+import { Input } from './Input.tsx';
+import { ConfirmationModal } from './ConfirmationModal.tsx';
+import { ArrowLeftIcon } from './icons/ArrowLeftIcon.tsx';
+import { PlusIcon } from './icons/PlusIcon.tsx';
+import { TrashIcon } from './icons/TrashIcon.tsx';
+import { useTranslation } from '../i18n/index.ts';
 
 interface GatheringDetailProps {
     gatheringId: string;

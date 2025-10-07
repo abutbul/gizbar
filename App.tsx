@@ -1,13 +1,14 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
-import { Gathering, AppData } from './types';
-import * as db from './services/database';
-import { GatheringList } from './components/GatheringList';
-import { GatheringDetail } from './components/GatheringDetail';
-import { MemberList } from './components/MemberList';
-import { Header } from './components/Header';
-import { Modal } from './components/Modal';
-import { Button } from './components/Button';
-import { useTranslation } from './i18n';
+import { Gathering, AppData } from './types.ts';
+import * as db from './services/database.ts';
+import { GatheringList } from './components/GatheringList.tsx';
+import { GatheringDetail } from './components/GatheringDetail.tsx';
+import { MemberList } from './components/MemberList.tsx';
+import { Header } from './components/Header.tsx';
+import { Modal } from './components/Modal.tsx';
+import { Button } from './components/Button.tsx';
+import { useTranslation } from './i18n/index.ts';
 
 export default function App() {
     const { t } = useTranslation();

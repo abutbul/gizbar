@@ -1,11 +1,12 @@
+
 import React, { useState, useEffect, useCallback } from 'react';
-import { GlobalMemberBalance } from '../types';
-import { Button } from './Button';
-import { Modal } from './Modal';
-import { Input } from './Input';
-import { PlusIcon } from './icons/PlusIcon';
-import * as db from '../services/database';
-import { useTranslation } from '../i18n';
+import { GlobalMemberBalance } from '../types.ts';
+import { Button } from './Button.tsx';
+import { Modal } from './Modal.tsx';
+import { Input } from './Input.tsx';
+import { PlusIcon } from './icons/PlusIcon.tsx';
+import * as db from '../services/database.ts';
+import { useTranslation } from '../i18n/index.ts';
 
 const BalanceCard: React.FC<{ member: GlobalMemberBalance }> = ({ member }) => {
     const { t } = useTranslation();

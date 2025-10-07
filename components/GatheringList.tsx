@@ -1,11 +1,12 @@
+
 import React, { useState, useMemo } from 'react';
-import { Gathering, GatheringStatus } from '../types';
-import { Button } from './Button';
-import { Modal } from './Modal';
-import { Input } from './Input';
-import { PlusIcon } from './icons/PlusIcon';
-import * as db from '../services/database';
-import { useTranslation } from '../i18n';
+import { Gathering, GatheringStatus } from '../types.ts';
+import { Button } from './Button.tsx';
+import { Modal } from './Modal.tsx';
+import { Input } from './Input.tsx';
+import { PlusIcon } from './icons/PlusIcon.tsx';
+import * as db from '../services/database.ts';
+import { useTranslation } from '../i18n/index.ts';
 
 interface GatheringListProps {
     gatherings: Gathering[];

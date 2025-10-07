@@ -1,7 +1,8 @@
+
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from './Button';
-import { useTranslation, languages, Language } from '../i18n';
-import { ChevronDownIcon } from './icons/ChevronDownIcon';
+import { Button } from './Button.tsx';
+import { useTranslation, languages, Language } from '../i18n/index.ts';
+import { ChevronDownIcon } from './icons/ChevronDownIcon.tsx';
 
 type View = 'gatherings' | 'members';
 

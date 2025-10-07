@@ -1,4 +1,5 @@
-import { AppData, Gathering, GatheringStatus, GlobalMember, GatheringMember, Expense, Payment, MemberBalance, GatheringTotals, GlobalMemberBalance } from '../types';
+
+import { AppData, Gathering, GatheringStatus, GlobalMember, GatheringMember, Expense, Payment, MemberBalance, GatheringTotals, GlobalMemberBalance } from '../types.ts';
 
 const DB_KEY = 'gatheringsDB_v2'; // New key for the new data structure
 
