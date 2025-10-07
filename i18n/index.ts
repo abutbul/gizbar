@@ -42,9 +42,9 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
             try {
                 // Fetch all translation files.
                 const [heResponse, enResponse, ruResponse] = await Promise.all([
-                    fetch('/locales/he.json'),
-                    fetch('/locales/en.json'),
-                    fetch('/locales/ru.json')
+                    fetch('./locales/he.json'),
+                    fetch('./locales/en.json'),
+                    fetch('./locales/ru.json')
                 ]);
 
                 if (!heResponse.ok || !enResponse.ok || !ruResponse.ok) {
