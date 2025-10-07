@@ -16,7 +16,9 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, currentView, onNavigate }) => {
     const { t, language, setLanguage } = useTranslation();
     const [isLangMenuOpen, setLangMenuOpen] = useState(false);
+    const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
     const langMenuRef = useRef<HTMLDivElement>(null);
+    const mobileMenuRef = useRef<HTMLDivElement>(null);
 
     const navButtonClasses = (view: View) =>
         `px-3 py-1 text-sm font-medium rounded-md transition-colors ${
@@ -29,6 +31,9 @@ export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, cu
         const handleClickOutside = (event: MouseEvent) => {
             if (langMenuRef.current && !langMenuRef.current.contains(event.target as Node)) {
                 setLangMenuOpen(false);
+            }
+            if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+                setMobileMenuOpen(false);
             }
         };
         document.addEventListener('mousedown', handleClickOutside);
@@ -74,6 +79,32 @@ export const Header: React.FC<HeaderProps> = ({ onImportClick, onExportClick, cu
                     <div className="hidden sm:flex items-center gap-2">
                         <Button onClick={onImportClick} variant="secondary">{t('import')}</Button>
                         <Button onClick={onExportClick} variant="secondary">{t('export')}</Button>
+                    </div>
+                    {/* Mobile menu dropdown */}
+                    <div className="sm:hidden relative" ref={mobileMenuRef}>
+                        <button 
+                            onClick={() => setMobileMenuOpen(prev => !prev)} 
+                            className="flex items-center justify-center p-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-800"
+                            aria-label="Menu"
+                        >
+                            <ChevronDownIcon className="w-5 h-5 text-slate-500" />
+                        </button>
+                        {isMobileMenuOpen && (
+                            <div className="absolute top-full mt-2 ltr:right-0 rtl:left-0 w-36 rounded-md shadow-lg bg-white dark:bg-slate-800 ring-1 ring-black ring-opacity-5 py-1 z-50">
+                                <button 
+                                    onClick={() => { onImportClick(); setMobileMenuOpen(false); }}
+                                    className="w-full text-start px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
+                                >
+                                    {t('import')}
+                                </button>
+                                <button 
+                                    onClick={() => { onExportClick(); setMobileMenuOpen(false); }}
+                                    className="w-full text-start px-4 py-2 text-sm text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-700"
+                                >
+                                    {t('export')}
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </div>
                 {/* Mobile navigation */}
