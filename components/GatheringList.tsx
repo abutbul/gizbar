@@ -83,9 +83,9 @@ export const GatheringList: React.FC<GatheringListProps> = ({ gatherings, onSele
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <h2 className="text-2xl font-bold">{t('yourGatherings')}</h2>
-                <div className="flex items-center space-x-4">
+                <div className="flex items-center gap-4 flex-wrap">
                     <div className="flex items-center">
                         <input
                             id="show-open-only"
@@ -95,12 +95,12 @@ export const GatheringList: React.FC<GatheringListProps> = ({ gatherings, onSele
                             onChange={(e) => setShowOnlyOpen(e.target.checked)}
                             className="h-4 w-4 rounded border-slate-300 dark:border-slate-600 text-indigo-600 focus:ring-indigo-500 bg-transparent"
                         />
-                        <label htmlFor="show-open-only" className="ms-2 block text-sm text-slate-700 dark:text-slate-300">
+                        <label htmlFor="show-open-only" className="ltr:ml-2 rtl:mr-2 block text-sm text-slate-700 dark:text-slate-300">
                             {t('showOpenOnly')}
                         </label>
                     </div>
                     <Button onClick={() => setCreateModalOpen(true)}>
-                        <PlusIcon className="w-5 h-5 me-2" />
+                        <PlusIcon className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
                         {t('newGathering')}
                     </Button>
                 </div>

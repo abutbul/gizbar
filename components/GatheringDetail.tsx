@@ -128,16 +128,16 @@ export const GatheringDetail: React.FC<GatheringDetailProps> = ({ gatheringId, o
         <div className="space-y-8">
             <div>
                 <Button onClick={onBack} variant="ghost" className="mb-4">
-                    <ArrowLeftIcon className="w-5 h-5 me-2 rtl:scale-x-[-1]" />
+                    <ArrowLeftIcon className="w-5 h-5 ltr:mr-2 rtl:ml-2 rtl:scale-x-[-1]" />
                     {t('backToGatherings')}
                 </Button>
                 <div className="p-6 bg-white dark:bg-slate-800 rounded-xl shadow-md">
-                    <div className="flex justify-between items-start">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
                         <div>
                             <h2 className="text-3xl font-bold">{gathering.description}</h2>
                             <p className="text-slate-500 dark:text-slate-400">{gathering.id}</p>
                         </div>
-                        <div className="flex space-x-2">
+                        <div className="flex gap-2">
                            {!isClosed && <Button onClick={() => setConfirmModal('close')} variant="secondary">{t('close')}</Button>}
                            <Button onClick={() => setConfirmModal('delete')} variant="danger"><TrashIcon className="w-5 h-5"/></Button>
                         </div>
@@ -160,13 +160,13 @@ export const GatheringDetail: React.FC<GatheringDetailProps> = ({ gatheringId, o
             </div>
 
             <div>
-                <div className="flex justify-between items-center mb-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
                     <h3 className="text-xl font-bold">{t('members')} ({gathering.members.length})</h3>
-                    {!isClosed && <Button onClick={() => setAddMemberModal(true)}><PlusIcon className="w-5 h-5 me-2"/>{t('addMember')}</Button>}
+                    {!isClosed && <Button onClick={() => setAddMemberModal(true)}><PlusIcon className="w-5 h-5 ltr:mr-2 rtl:ml-2"/>{t('addMember')}</Button>}
                 </div>
                 <div className="space-y-3">
                     {membersWithBalance.length > 0 ? membersWithBalance.map(member => (
-                        <div key={member.memberId} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm flex items-center justify-between">
+                        <div key={member.memberId} className="bg-white dark:bg-slate-800 p-4 rounded-lg shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                             <div className="flex-1">
                                 <p className="font-semibold">{member.name}</p>
                                 <p className={`text-sm font-medium ${statusClasses[member.status]}`}>
@@ -177,7 +177,7 @@ export const GatheringDetail: React.FC<GatheringDetailProps> = ({ gatheringId, o
                                 </p>
                             </div>
                             {!isClosed && (
-                                <div className="flex items-center space-x-2">
+                                <div className="flex items-center gap-2 flex-wrap">
                                     {member.status !== 'settled' && (
                                         <Button onClick={() => handleSettle(member)} variant="secondary" size="sm">{t('settle')}</Button>
                                     )}

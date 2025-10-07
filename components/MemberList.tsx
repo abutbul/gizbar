@@ -73,10 +73,10 @@ export const MemberList: React.FC = () => {
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                 <h2 className="text-2xl font-bold">{t('allMembers')}</h2>
                 <Button onClick={() => setCreateModalOpen(true)}>
-                    <PlusIcon className="w-5 h-5 me-2" />
+                    <PlusIcon className="w-5 h-5 ltr:mr-2 rtl:ml-2" />
                     {t('newMember')}
                 </Button>
             </div>
