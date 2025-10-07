@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Added Babel Standalone for in-browser TSX transpilation -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <style>
     body {
       font-family: 'Assistant', sans-serif;
@@ -30,6 +32,7 @@
 </head>
 <body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-200">
   <div id="root"></div>
-  <script type="module" src="./index.tsx"></script>
+  <!-- Changed script type to text/babel for Babel to transpile -->
+  <script type="text/babel" data-type="module" src="./index.tsx"></script>
 </body>
 </html>
